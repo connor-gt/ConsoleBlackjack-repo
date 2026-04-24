@@ -1,3 +1,15 @@
+﻿#include <iostream>
+#include "Card.h"
+
+int main()
+{
+	Card card1(13, 'H');
+	std::cout << card1.toString() << std::endl;
+
+	return 0;
+}
+
+/*
 #include <format>
 #include <iostream>
 #include <string>
@@ -44,21 +56,4 @@ std::string rankToString(Rank rank)
 
 	return "Unknown";
 }
-
-struct Card
-{
-	Rank rank;
-	Suit suit;
-
-	Card(Rank r, Suit s) : rank(r), suit(s) {}
-
-	std::string toString() const {
-		return std::format("{} of {}", rankToString(rank), suitToString(suit));
-	}
-};
-
-int main()
-{
-	Card card = { Rank::Jack, Suit::Hearts };
-	std::cout << card.toString();
-}
+*/
