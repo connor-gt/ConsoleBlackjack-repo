@@ -1,3 +1,9 @@
+#include <string>
+#include <vector>
+#include <iostream>
+#include <algorithm>
+#include <random>
+#include "Card.h"
 #include "Deck.h"
 
 Deck::Deck() {
@@ -23,19 +29,18 @@ Deck::Deck() {
 			cards.push_back(card);
 		}
 	}
-
-	for (int i = 0; i < 52; i++) {
-		for (int j = 0; j < Card::rowsToRender; j++) {
-			std::cout << cards[i].render()[j] << std::endl;
-		}
-		std::cout << std::endl;
-	}
 }
 
 void Deck::shuffle() {
-
+	auto rng = std::mt19937(time(nullptr)); // Initialize with a random seed value
+	std::ranges::shuffle(cards, rng);
 }
 
 Card Deck::deal() {
 	return Card(3, "D");
+}
+
+std::vector<Card> Deck::createCopy() {
+	std::vector<Card> copy = cards;
+	return copy;
 }
