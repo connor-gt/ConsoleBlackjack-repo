@@ -2,15 +2,25 @@
 
 #include <string>
 #include <format>
+#include <vector>
+#include <iostream>
 
 struct Card {
 	int rank;
-	char suit;
+	std::string suit;
+	bool hidden;
 
-	Card(int rank, char suit) : rank(rank), suit(suit) {}
+	Card(int rank, std::string suit) : rank(rank), suit(suit), hidden(false) {}
+	Card(int rank, std::string suit, bool hidden) : rank(rank), suit(suit), hidden(hidden) {}
 
-	std::string toString() const {
-		return std::format("{}{}", rankToString(rank), suit);
+	std::vector<std::string> render() const {
+		return {
+			"/---\\",
+			hidden ? "|XXX|" : std::format("|{:<2} |", rank < 11 ? std::to_string(rank) : rankToString(rank)),
+			hidden ? "|XXX|" : "|   |",
+			hidden ? "|XXX|" : std::format("| {:<2}|", suit),
+			"\\---/"
+		};
 	}
 
 	std::string rankToString(int rank) const {

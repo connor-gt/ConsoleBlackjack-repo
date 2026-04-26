@@ -3,8 +3,26 @@
 
 int main()
 {
-	Card card1(13, 'H');
-	std::cout << card1.toString() << std::endl;
+	Card cards[3] = { Card(13, "H"), Card(4, "D", true), Card(10, "C") };
+
+	for (int i = 0; i < 5; i++) {
+		// Using Card& instead of just Card prevents copying the card and uses a reference, const makes sure the reference isn't modified
+		for (const Card& card : cards) {
+			std::cout << card.render()[i] << " ";
+		}
+		std::cout << std::endl;
+	}
+
+	std::cout << std::endl;
+	cards[1].hidden = false;
+	cards[0].hidden = true;
+
+	for (int i = 0; i < 5; i++) {
+		for (const Card& card : cards) {
+			std::cout << card.render()[i] << " ";
+		}
+		std::cout << std::endl;
+	}
 
 	return 0;
 }
