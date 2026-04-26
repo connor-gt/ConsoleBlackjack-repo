@@ -1,5 +1,6 @@
 ﻿#include <iostream>
 #include "Card.h"
+#include "Deck.h"
 
 int main()
 {
@@ -23,6 +24,10 @@ int main()
 		}
 		std::cout << std::endl;
 	}
+
+	std::cout << std::endl;
+
+	Deck deck;
 
 	return 0;
 }

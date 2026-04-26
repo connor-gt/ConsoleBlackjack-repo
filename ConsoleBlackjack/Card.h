@@ -9,6 +9,7 @@ struct Card {
 	int rank;
 	std::string suit;
 	bool hidden;
+	static const int rowsToRender = 5;
 
 	Card(int rank, std::string suit) : rank(rank), suit(suit), hidden(false) {}
 	Card(int rank, std::string suit, bool hidden) : rank(rank), suit(suit), hidden(hidden) {}
@@ -18,7 +19,7 @@ struct Card {
 			"/---\\",
 			hidden ? "|XXX|" : std::format("|{:<2} |", rank < 11 ? std::to_string(rank) : rankToString(rank)),
 			hidden ? "|XXX|" : "|   |",
-			hidden ? "|XXX|" : std::format("| {:<2}|", suit),
+			hidden ? "|XXX|" : std::format("|  {}|", suit),
 			"\\---/"
 		};
 	}
