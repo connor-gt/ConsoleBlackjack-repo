@@ -16,6 +16,8 @@ int main()
 		}
 	}
 
+	// upgraded to visual studio 2026
+
 	/*
 	std::vector<Card> unshuffled = deck.createCopy();
 	for (const Card& card : unshuffled) {
