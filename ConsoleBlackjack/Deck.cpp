@@ -3,6 +3,7 @@
 #include <iostream>
 #include <algorithm>
 #include <random>
+#include <optional>
 #include "Card.h"
 #include "Deck.h"
 
@@ -36,8 +37,14 @@ void Deck::shuffle() {
 	std::ranges::shuffle(cards, rng);
 }
 
-Card Deck::deal() {
-	return Card(3, "D");
+std::optional<Card> Deck::deal() {
+	if (cards.empty()) {
+		return {};
+	}
+
+	Card card = cards.back();
+	cards.pop_back();
+	return card;
 }
 
 std::vector<Card> Deck::createCopy() {

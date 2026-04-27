@@ -4,7 +4,7 @@ class Deck {
 public:
 	Deck();
 	void shuffle();
-	Card deal();
+	std::optional<Card> deal();
 	std::vector<Card> createCopy();
 
 private:
