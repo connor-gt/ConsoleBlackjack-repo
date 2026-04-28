@@ -1,5 +1,9 @@
 #pragma once
 
+#include <vector>
+#include <optional>
+#include "Card.h"
+
 class Deck {
 public:
 	Deck();
