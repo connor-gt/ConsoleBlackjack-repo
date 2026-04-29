@@ -44,7 +44,7 @@ std::optional<Card> Deck::deal() {
 	return card;
 }
 
-std::vector<Card> Deck::createCopy() {
+std::vector<Card> Deck::getCards() {
 	std::vector<Card> copy = cards;
 	return copy;
 }

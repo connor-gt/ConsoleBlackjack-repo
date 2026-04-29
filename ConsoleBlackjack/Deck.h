@@ -9,7 +9,7 @@ public:
 	Deck();
 	void shuffle();
 	std::optional<Card> deal();
-	std::vector<Card> createCopy();
+	std::vector<Card> getCards();
 
 private:
 	std::vector<Card> cards;
