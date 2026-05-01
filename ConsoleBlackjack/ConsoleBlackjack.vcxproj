@@ -125,12 +125,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Blackjack.cpp" />
     <ClCompile Include="Deck.cpp" />
     <ClCompile Include="Hand.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Player.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Blackjack.h" />
     <ClInclude Include="Card.h" />
     <ClInclude Include="Deck.h" />
     <ClInclude Include="Hand.h" />
