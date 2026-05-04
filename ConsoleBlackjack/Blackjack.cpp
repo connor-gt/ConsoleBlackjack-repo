@@ -3,13 +3,15 @@
 #include "Blackjack.h"
 #include "Card.h"
 
-void Blackjack::start(Player* player) {
+void Blackjack::start(Player& player) {
 	std::cout << "------------------------------------------------\n";
 	std::cout << "|                 Weclome to:                  |\n";
 	std::cout << "|                  Blackjack                   |\n";
 	std::cout << "------------------------------------------------\n";
 
-	bool playAgain = true;
+	int count = 0;
+	int max = 3000000;
+	//bool playAgain = true;
 	do {
 		Deck deck;
 		deck.shuffle();
@@ -18,10 +20,16 @@ void Blackjack::start(Player* player) {
 			std::optional<Card> card = deck.deal();
 
 			if (card) {
-				player->hand.addCard(card.value());
+				player.hand.addCard(card.value());
 			}
 		}
 
+		if (count % 300000 == 0) {
+			player.hand.render();
+			std::cout << "\n";
+		}
+
+		/*
 		player->hand.render();
 
 		std::string response;
@@ -30,12 +38,12 @@ void Blackjack::start(Player* player) {
 		if (response == "N" || response == "n") {
 			playAgain = false;
 		}
-
-		player->hand.clear();
-
-	} while (playAgain);
+		*/
+		player.hand.clear();
+		count++;
+	} while (count <= max);
 }
 
-void Blackjack::playRound(Player* player, Deck deck) {
+void Blackjack::playRound(Player& player, Deck deck) {
 
 }

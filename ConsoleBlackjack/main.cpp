@@ -5,9 +5,9 @@
 
 int main()
 {
-	Player player(100);
+	std::unique_ptr<Player> player = std::make_unique<Player>(100);
 	Blackjack blackjack;
-	blackjack.start(&player);
+	blackjack.start(*player);
 
 	return 0;
 }
