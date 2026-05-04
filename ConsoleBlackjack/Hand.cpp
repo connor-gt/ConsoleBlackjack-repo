@@ -45,8 +45,15 @@ void Hand::render() {
 /**
 * Add a card to this hand.
 */
-void Hand::hit(Card card) {
+void Hand::addCard(Card card) {
 	cards.push_back(card);
+}
+
+/**
+* Empty this hand by clearing the cards.
+*/
+void Hand::clear() {
+	cards.clear();
 }
 
 /**

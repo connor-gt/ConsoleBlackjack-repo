@@ -3,11 +3,10 @@
 #include "Player.h"
 #include "Deck.h"
 
-class Blackjack{
+class Blackjack {
 public:
-	void play(); // Could handle playing the entire session
-	void playRound(Player player, Deck deck); // Add dealer as parameter when I make it
-	void displayTitle();
+	void start(Player* player); // Could handle playing the entire session
+	void playRound(Player* player, Deck deck); // Add dealer as parameter when I make it
 
 private:
 };

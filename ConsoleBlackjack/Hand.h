@@ -8,7 +8,8 @@ public:
 	Hand();
 	int evaluate();
 	void render();
-	void hit(Card card);
+	void addCard(Card card);
+	void clear();
 
 private:
 	std::vector<Card> cards;

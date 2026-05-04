@@ -5,8 +5,9 @@
 
 int main()
 {
+	Player player(100);
 	Blackjack blackjack;
-	blackjack.play();
+	blackjack.start(&player);
 
 	return 0;
 }
