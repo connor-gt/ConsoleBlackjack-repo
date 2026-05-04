@@ -1,5 +1,6 @@
 #include <iostream>
 #include <optional>
+#include <string>
 #include "Blackjack.h"
 #include "Card.h"
 
@@ -9,41 +10,32 @@ void Blackjack::start(Player& player) {
 	std::cout << "|                  Blackjack                   |\n";
 	std::cout << "------------------------------------------------\n";
 
-	int count = 0;
-	int max = 3000000;
-	//bool playAgain = true;
 	do {
-		Deck deck;
-		deck.shuffle();
-		
-		for (int i = 0; i < 3; i++) {
-			std::optional<Card> card = deck.deal();
+		std::unique_ptr<Deck> deck = std::make_unique<Deck>();
+		deck->shuffle();
+		playRound(player, *deck);
 
-			if (card) {
-				player.hand.addCard(card.value());
-			}
-		}
-
-		if (count % 300000 == 0) {
-			player.hand.render();
-			std::cout << "\n";
-		}
-
-		/*
-		player->hand.render();
-
-		std::string response;
-		std::cout << "Run again?: ";
-		std::cin >> response;
-		if (response == "N" || response == "n") {
-			playAgain = false;
-		}
-		*/
-		player.hand.clear();
-		count++;
-	} while (count <= max);
+	} while (askPlayAgain());
 }
 
-void Blackjack::playRound(Player& player, Deck deck) {
+void Blackjack::playRound(Player& player, Deck& deck) {
+	std::cout << "Another round playing.\n";
+}
 
+bool Blackjack::askPlayAgain() {
+	char c = '?';
+
+	do {
+		std::string input;
+		std::cout << "Play another round? (Y/N): ";
+		std::cin >> input;
+
+		if (input.size() != 1) {
+			continue;
+		}
+
+		c = std::toupper(input[0]);
+	} while (c != 'Y' && c != 'N');
+
+	return c == 'Y';
 }
