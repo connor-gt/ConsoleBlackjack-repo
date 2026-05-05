@@ -13,11 +13,14 @@ void Blackjack::start(Player& player) {
 	std::cout << "------------------------------------------------\n";
 
 	std::unique_ptr<Dealer> dealer = std::make_unique<Dealer>();
+	Round round;
 
 	do {
+		std::cout << "\n------------------------------------------------\n";
+
 		std::unique_ptr<Deck> deck = std::make_unique<Deck>();
 		deck->shuffle();
-		Round::playRound(player, *dealer, *deck);
+		round.play(player, *dealer, *deck);
 
 	} while (askPlayAgain());
 }

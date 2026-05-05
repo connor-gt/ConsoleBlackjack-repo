@@ -6,8 +6,11 @@
 
 class Round {
 public:
-	static void playRound(Player& player, Dealer& dealer, Deck& deck);
+	void play(Player& player, Dealer& dealer, Deck& deck);
 
 private:
+	void initialize(Player& player, Dealer& dealer, Deck& deck);
+	void bettingPhase(Player& player, Deck& deck);
+	void endPhase();
 };
 
