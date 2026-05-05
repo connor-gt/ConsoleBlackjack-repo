@@ -44,9 +44,23 @@ void Hand::render() {
 
 /**
 * Add a card to this hand.
+* 
+* @param card The card to add to the hand.
 */
 void Hand::addCard(Card card) {
 	cards.push_back(card);
+}
+
+/**
+* Hide or unhide a card at a certain index (starting at 0). If the index is out of range, nothing happens.
+* 
+* @param index The card's index that should be hidden.
+* @param hide Whether or not the card should be hidden (its rank and suit shown or replaced with X's if hidden).
+*/
+void Hand::hideCard(int index, bool hide) {
+	if (index >= 0 && index < cards.size()) {
+		cards[index].hidden = hide;
+	}
 }
 
 /**

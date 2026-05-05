@@ -2,7 +2,9 @@
 #include <optional>
 #include <string>
 #include "Blackjack.h"
-#include "Card.h"
+#include "Deck.h"
+#include "Dealer.h"
+#include "Round.h"
 
 void Blackjack::start(Player& player) {
 	std::cout << "------------------------------------------------\n";
@@ -15,32 +17,9 @@ void Blackjack::start(Player& player) {
 	do {
 		std::unique_ptr<Deck> deck = std::make_unique<Deck>();
 		deck->shuffle();
-		playRound(player, *dealer, *deck);
+		Round::playRound(player, *dealer, *deck);
 
 	} while (askPlayAgain());
-}
-
-void Blackjack::playRound(Player& player, Dealer& dealer, Deck& deck) {
-	player.hand.clear();
-	dealer.hand.clear();
-
-	for (int i = 0; i < 2; i++) {
-		std::optional<Card> card = deck.deal();
-		if (card) {
-			player.hand.addCard(card.value());
-		}
-
-		card = deck.deal();
-		if (card) {
-			dealer.hand.addCard(card.value());
-		}
-	}
-
-	std::cout << "\nDealer:\n";
-	dealer.hand.render();
-
-	std::cout << "\nPlayer:\n";
-	player.hand.render();
 }
 
 bool Blackjack::askPlayAgain() {

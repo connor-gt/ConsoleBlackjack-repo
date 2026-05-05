@@ -9,6 +9,7 @@ public:
 	int evaluate();
 	void render();
 	void addCard(Card card);
+	void hideCard(int index, bool hide);
 	void clear();
 
 private:
