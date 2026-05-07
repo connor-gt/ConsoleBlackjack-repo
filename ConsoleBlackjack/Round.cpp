@@ -1,11 +1,15 @@
 #include "Round.h"
 
-void Round::play(Player& player, Dealer& dealer, Deck& deck) {
-	initialize(player, dealer, deck);
-	bettingPhase(player, deck);
+Round::Round(Player& player, Dealer& dealer, Deck& deck) : player(player), dealer(dealer), deck(deck) {
+	initialize();
+
+	std::string input;
+	do {
+		input = bettingPhase();
+	} while (input != "S");
 }
 
-void Round::initialize(Player& player, Dealer& dealer, Deck& deck) {
+void Round::initialize() {
 	player.hand.clear();
 	dealer.hand.clear();
 
@@ -23,7 +27,6 @@ void Round::initialize(Player& player, Dealer& dealer, Deck& deck) {
 
 	// Hide the 2nd card in the dealer's hand
 	dealer.hand.hideCard(1, true);
-
 	std::cout << "\nDealer:\n\n";
 	dealer.hand.render();
 
@@ -32,7 +35,7 @@ void Round::initialize(Player& player, Dealer& dealer, Deck& deck) {
 	std::cout << "\nValue: " << player.hand.evaluate() << "\n\n";
 }
 
-void Round::bettingPhase(Player& player, Deck& deck) {
+std::string Round::bettingPhase() {
 	std::string input;
 
 	do {
@@ -46,5 +49,12 @@ void Round::bettingPhase(Player& player, Deck& deck) {
 		input[0] = std::toupper(input[0]);
 	} while (input != "H" && input != "S" && input != "D");
 
-	std::cout << "You selected " << input << "\n";
+	if (input == "H") {
+		
+	}
+	else if (input == "D") {
+
+	}
+
+	return input;
 }

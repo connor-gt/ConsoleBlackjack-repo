@@ -6,11 +6,13 @@
 
 class Round {
 public:
-	void play(Player& player, Dealer& dealer, Deck& deck);
+	Round(Player& player, Dealer& dealer, Deck& deck);
 
 private:
-	void initialize(Player& player, Dealer& dealer, Deck& deck);
-	void bettingPhase(Player& player, Deck& deck);
+	void initialize();
+	std::string bettingPhase();
 	void endPhase();
+	Player player;
+	Dealer dealer;
+	Deck deck;
 };
-
