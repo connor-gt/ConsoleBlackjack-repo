@@ -1,15 +1,24 @@
 #include "Round.h"
 
-Round::Round(Player& player, Dealer& dealer, Deck& deck) : player(player), dealer(dealer), deck(deck) {
+Round::Round(Player& player, Dealer& dealer, Deck& deck, double bet) : player(player), dealer(dealer), deck(deck), bet(bet) {
 	initialize();
 
 	std::string input;
 	do {
 		input = bettingPhase();
+
+		std::cout << "\nDealer:\n\n";
+		this->dealer.hand.render();
+
+		std::cout << "\n\nPlayer:\n\n";
+		this->player.hand.render();
+		std::cout << "\nValue: " << this->player.hand.evaluate() << "\n\n";
 	} while (input != "S");
 }
 
 void Round::initialize() {
+	player.setCash(player.getCash() - bet);
+
 	player.hand.clear();
 	dealer.hand.clear();
 
@@ -39,7 +48,7 @@ std::string Round::bettingPhase() {
 	std::string input;
 
 	do {
-		std::cout << "(H) Hit  (S) Stand  (D) Double => ";
+		std::cout << "(H) Hit  (S) Stand  (D) Double ($" << bet << " bet, $" << player.getCash() << " remaining balance) => ";
 		std::cin >> input;
 
 		if (input.size() > 1) {
@@ -47,13 +56,26 @@ std::string Round::bettingPhase() {
 		}
 
 		input[0] = std::toupper(input[0]);
+
+		if (input == "D" && bet > player.getCash()) {
+			std::cout << "Not enough cash to double down.\n";
+			input = "d"; // Change to lowercase to run the loop again
+			continue;
+		}
+
 	} while (input != "H" && input != "S" && input != "D");
 
-	if (input == "H") {
-		
+	if (input == "S") {
+		return input;
 	}
 	else if (input == "D") {
+		player.setCash(player.getCash() - bet);
+		bet *= 2;
+	}
 
+	std::optional<Card> card = deck.deal();
+	if (card) {
+		player.hand.addCard(card.value());
 	}
 
 	return input;

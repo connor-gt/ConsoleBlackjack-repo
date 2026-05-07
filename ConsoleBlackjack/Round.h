@@ -6,7 +6,7 @@
 
 class Round {
 public:
-	Round(Player& player, Dealer& dealer, Deck& deck);
+	Round(Player& player, Dealer& dealer, Deck& deck, double bet);
 
 private:
 	void initialize();
@@ -15,4 +15,5 @@ private:
 	Player player;
 	Dealer dealer;
 	Deck deck;
+	double bet;
 };

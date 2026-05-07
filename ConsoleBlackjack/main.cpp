@@ -6,6 +6,7 @@
 int main()
 {
 	std::unique_ptr<Player> player = std::make_unique<Player>(100);
+	std::cout << "Cash = $" << player.get()->getCash() << std::endl;
 	Blackjack blackjack;
 	blackjack.start(*player);
 

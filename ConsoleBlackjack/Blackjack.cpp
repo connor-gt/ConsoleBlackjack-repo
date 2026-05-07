@@ -17,9 +17,11 @@ void Blackjack::start(Player& player) {
 	do {
 		std::cout << "\n------------------------------------------------\n";
 
+		double bet = getBet();
+
 		std::unique_ptr<Deck> deck = std::make_unique<Deck>();
 		deck->shuffle();
-		Round round(player, *dealer, *deck);
+		Round round(player, *dealer, *deck, bet);
 
 	} while (askPlayAgain());
 }
@@ -40,4 +42,23 @@ bool Blackjack::askPlayAgain() {
 	} while (c != 'Y' && c != 'N');
 
 	return c == 'Y';
+}
+
+double Blackjack::getBet() {
+	std::string input;
+	bool isValid;
+	double bet;
+
+	do {
+		try {
+			std::string input;
+			std::cout << "Enter bet amount: ";
+			std::cin >> input;
+
+			bet = std::stod(input);
+			isValid = true;
+		} catch (...) {}
+	} while (!isValid);
+
+	return bet;
 }
