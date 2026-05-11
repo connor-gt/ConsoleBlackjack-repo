@@ -4,16 +4,25 @@ Round::Round(Player& player, Dealer& dealer, Deck& deck, double bet) : player(pl
 	initialize();
 
 	std::string input;
+	int handValue = 0;
 	do {
 		input = bettingPhase();
+		handValue = this->player.hand.evaluate();
 
 		std::cout << "\nDealer:\n\n";
 		this->dealer.hand.render();
 
 		std::cout << "\n\nPlayer:\n\n";
 		this->player.hand.render();
-		std::cout << "\nValue: " << this->player.hand.evaluate() << "\n\n";
-	} while (input != "S");
+		std::cout << "\nValue: " << handValue << "\n\n";
+	} while (input != "S" && handValue <= 21);
+
+	if (handValue > 21) {
+		std::cout << "Bust!\n";
+	}
+	else {
+		this->player.setCash(this->player.getCash() + this->bet * 2);
+	}
 }
 
 void Round::initialize() {

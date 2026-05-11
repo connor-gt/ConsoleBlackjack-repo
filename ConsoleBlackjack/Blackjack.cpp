@@ -16,8 +16,9 @@ void Blackjack::start(Player& player) {
 
 	do {
 		std::cout << "\n------------------------------------------------\n";
+		std::cout << "Cash = $" << player.getCash() << std::endl;
 
-		double bet = getBet();
+		double bet = getBet(player);
 
 		std::unique_ptr<Deck> deck = std::make_unique<Deck>();
 		deck->shuffle();
@@ -44,7 +45,7 @@ bool Blackjack::askPlayAgain() {
 	return c == 'Y';
 }
 
-double Blackjack::getBet() {
+double Blackjack::getBet(Player& player) {
 	std::string input;
 	bool isValid;
 	double bet;
@@ -56,7 +57,7 @@ double Blackjack::getBet() {
 			std::cin >> input;
 
 			bet = std::stod(input);
-			isValid = true;
+			isValid = bet <= player.getCash() && bet > 0;
 		} catch (...) {}
 	} while (!isValid);
 

@@ -11,9 +11,8 @@ public:
 private:
 	void initialize();
 	std::string bettingPhase();
-	void endPhase();
-	Player player;
-	Dealer dealer;
-	Deck deck;
+	Player& player;
+	Dealer& dealer;
+	Deck& deck;
 	double bet;
 };
