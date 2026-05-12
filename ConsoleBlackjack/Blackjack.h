@@ -7,6 +7,6 @@ public:
 	void start(Player& player);
 
 private:
-	bool askPlayAgain();
+	bool askPlayAgain(Player& player);
 	double getBet(Player& player);
 };

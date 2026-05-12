@@ -19,9 +19,52 @@ Round::Round(Player& player, Dealer& dealer, Deck& deck, double bet) : player(pl
 
 	if (handValue > 21) {
 		std::cout << "Bust!\n";
+		return;
+	}
+
+	// Handle displaying the dealer's hidden card and draw cards for the dealer if needed
+	dealer.hand.hideCard(1, false);
+	std::cout << "\nDealer:\n\n";
+	dealer.hand.render();
+	std::cout << "\nValue: " << dealer.hand.evaluate() << "\n\n";
+
+	std::cout << "\n\nPlayer:\n\n";
+	player.hand.render();
+	std::cout << "\nValue: " << player.hand.evaluate() << "\n\n";
+
+	while (dealer.hand.evaluate() < dealer.minHandValue) {
+		std::cout << "Dealer drawing card...\n";
+
+		std::optional<Card> card = deck.deal();
+		if (card) {
+			dealer.hand.addCard(card.value());
+		}
+
+		std::cout << "\nDealer:\n\n";
+		dealer.hand.render();
+		std::cout << "\nValue: " << dealer.hand.evaluate() << "\n\n";
+
+		std::cout << "\n\nPlayer:\n\n";
+		player.hand.render();
+		std::cout << "\nValue: " << player.hand.evaluate() << "\n\n";
+	}
+	
+	int playerHand = player.hand.evaluate();
+	int dealerHand = dealer.hand.evaluate();
+	if (dealerHand > 21 || playerHand > dealerHand) {
+		// Add winning funds to the player
+		this->bet *= 2;
+		this->player.setCash(this->player.getCash() + this->bet);
+
+		std::cout << "Player wins! $" << this->bet << " has been credited to the balance.\n";
+	}
+	else if (playerHand < dealerHand) {
+		std::cout << "Dealer wins!\n";
 	}
 	else {
-		this->player.setCash(this->player.getCash() + this->bet * 2);
+		this->player.setCash(this->player.getCash() + this->bet);
+
+		std::cout << "Tie! The initial bet of $" << this->bet << " has been credited to the balance.\n";
 	}
 }
 
