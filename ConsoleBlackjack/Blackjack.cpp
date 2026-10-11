@@ -1,6 +1,7 @@
 #include <iostream>
 #include <optional>
 #include <string>
+#include <memory>
 #include "Blackjack.h"
 #include "Deck.h"
 #include "Dealer.h"
