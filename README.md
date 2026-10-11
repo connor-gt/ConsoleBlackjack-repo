@@ -26,6 +26,57 @@ The dealer draws until their hand reaches at least 17. The round then ends with 
 | :---: | :---: |
 | <img src="Screenshots/screenshot-3.jpg" alt="The player draws a card, reaches 23, and loses the round" width="360"> | <img src="Screenshots/screenshot-4.jpg" alt="The dealer reaches 25 and the player's winnings are added to their balance" width="360"> |
 
+## Build and Run
+
+Download and extract the repository using **Code > Download ZIP**, or clone it with Git. Choose either of the following build options.
+
+### Visual Studio on Windows
+
+1. Install Visual Studio with the **Desktop development with C++** workload.
+2. Open [ConsoleBlackjack.sln](ConsoleBlackjack/ConsoleBlackjack.sln).
+3. Select **Build > Build Solution**, or press **Ctrl+Shift+B**.
+4. Select **Debug > Start Without Debugging**, or press **Ctrl+F5** to play.
+
+The project is configured to use C++20.
+
+### Using g++
+
+Use **GCC 13.1 or newer**, since the project uses the C++20 `std::format` feature. Make sure `g++` is available in your terminal.
+
+Start in the repository's root folder, which contains this README and the `ConsoleBlackjack` folder.
+
+**Windows PowerShell**
+
+Enter the source folder and compile:
+
+```powershell
+cd ConsoleBlackjack
+g++ -std=c++20 main.cpp Blackjack.cpp Deck.cpp Hand.cpp Player.cpp Round.cpp -o blackjack.exe
+```
+
+After compilation succeeds, run:
+
+```powershell
+.\blackjack.exe
+```
+
+**Linux or a Bash terminal with a compatible GCC installation**
+
+Enter the source folder and compile:
+
+```bash
+cd ConsoleBlackjack
+g++ -std=c++20 main.cpp Blackjack.cpp Deck.cpp Hand.cpp Player.cpp Round.cpp -o blackjack
+```
+
+After compilation succeeds, run:
+
+```bash
+./blackjack
+```
+
+The compilation commands include all six `.cpp` files because the game logic is split across multiple files.
+
 ## Code Tour
 
 These files are good starting points for looking through the project:
